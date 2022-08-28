@@ -1,12 +1,12 @@
+import 'package:datahub/collection.dart';
 import 'package:flutter_datahub/bloc.dart';
 
-import 'collection.dart';
 import 'collection_state_model.dart';
 
 abstract class CollectionController<Item> {
   final Collection<Item> collection;
 
-  Stream<PropertyState<CollectionStateModel>> get stream;
+  Stream<PropertyState<CollectionStateModel<Item>>> get stream;
 
   CollectionController(this.collection);
 

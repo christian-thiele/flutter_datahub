@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:boost/boost.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:datahub/collection.dart';
 
 import 'package:flutter_datahub/bloc.dart';
 
-import 'collection.dart';
 import 'collection_controller.dart';
 import 'paged_collection_model.dart';
 
@@ -24,6 +24,7 @@ class PagedCollectionController<Item> extends CollectionController<Item> {
     _streamController.sink.add(const LoadingState());
   }
 
+  @override
   Stream<PropertyState<PagedCollectionModel<Item>>> get stream =>
       _streamController.stream;
 

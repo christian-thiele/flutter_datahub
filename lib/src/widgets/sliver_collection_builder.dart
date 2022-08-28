@@ -1,7 +1,7 @@
 import 'package:boost/boost.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_datahub/reactive_collection.dart';
+import 'package:flutter_datahub/collection.dart';
 import 'package:flutter_datahub/utils.dart';
 
 import 'error_text.dart';
