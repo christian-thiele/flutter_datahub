@@ -57,7 +57,7 @@ class TableCollectionBuilder<Item> extends StatefulWidget {
         super(key: key);
 
   @override
-  _TableCollectionBuilderState<Item> createState() =>
+  State<TableCollectionBuilder<Item>> createState() =>
       _TableCollectionBuilderState<Item>();
 }
 

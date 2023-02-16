@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
+import 'package:datahub/collection.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_datahub/collection.dart';
 import 'package:rxdart/rxdart.dart';
-
-import 'package:flutter_datahub/reactive_collection.dart';
 
 import 'property_state.dart';
 

@@ -38,7 +38,7 @@ class SliverCollectionBuilder<Item> extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SliverCollectionBuilderState<Item> createState() =>
+  State<SliverCollectionBuilder<Item>> createState() =>
       _SliverCollectionBuilderState<Item>();
 }
 

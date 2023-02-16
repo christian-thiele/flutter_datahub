@@ -5,7 +5,7 @@ class LoadingSpinner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       height: 64.0,
       child: Center(
         child: SizedBox(

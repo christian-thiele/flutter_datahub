@@ -14,6 +14,7 @@ abstract class PropertyState<T> {
 class ValueState<T> extends PropertyState<T> {
   final T value;
 
+  @override
   T? get valueOrNull => value;
 
   const ValueState(this.value);
