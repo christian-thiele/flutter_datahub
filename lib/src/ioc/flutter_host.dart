@@ -15,6 +15,4 @@ class FlutterHost extends ServiceHost {
           failWithServices: false,
           logBackend: FlutterLogBackend(crashlytics: crashlytics),
         );
-
-
 }
