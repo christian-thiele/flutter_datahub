@@ -3,6 +3,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_datahub/utils.dart';
 
+//TODO docs
 class FlutterHost extends ServiceHost {
   final Widget? app;
 
