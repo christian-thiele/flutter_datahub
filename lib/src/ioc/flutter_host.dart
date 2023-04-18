@@ -4,6 +4,7 @@ import 'package:boost/boost.dart';
 import 'package:datahub/datahub.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_datahub/src/ioc/resolver_provider.dart';
 import 'package:flutter_datahub/utils.dart';
 
 /// Hosts services and provides dependency injection.
@@ -26,10 +27,12 @@ class FlutterHost extends ServiceHost {
   FlutterHost(
     List<BaseService Function()> factories, {
     FirebaseCrashlytics? crashlytics,
+    Map<String, dynamic> config = const <String, dynamic>{},
   }) : super(
           factories,
           failWithServices: false,
           logBackend: FlutterLogBackend(crashlytics: crashlytics),
+          config: config,
         );
 
   /// Runs the application.
@@ -37,8 +40,8 @@ class FlutterHost extends ServiceHost {
   /// All services will be initialized in the order they are
   /// supplied.
   ///
-  /// If [app] is not null, `runApp(app)` will be called after service
-  /// initialization.
+  /// If [app] is not null, `runApp(app)` will be called with an IoC context
+  /// after service initialization.
   Future<void> run([Widget? app]) async {
     final stopwatch = Stopwatch()..start();
     try {
@@ -60,6 +63,9 @@ class FlutterHost extends ServiceHost {
       sender: 'FlutterDataHub',
     );
 
-    app?.apply(runApp);
+    app?.apply(runAppAsService);
   }
+
+  void runAppAsService(Widget app) =>
+      runAsService(() => runApp(ResolverProvider(child: app)));
 }

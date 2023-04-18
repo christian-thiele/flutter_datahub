@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:async';
 
 import 'package:boost/boost.dart';
 import 'package:datahub/datahub.dart';
@@ -27,21 +27,24 @@ class FlutterLogBackend extends LogBackend {
       return;
     }
 
-    stdout.write(_severityPrefix(message.severity));
-    stdout.write(' ');
-    stdout.write(message.message);
+    final buffer = StringBuffer();
+
+    buffer.write(_severityPrefix(message.severity));
+    buffer.write(' ');
+    buffer.write(message.message);
 
     if (message.exception != null) {
-      stdout.write('\n');
-      stdout.write(message.exception);
+      buffer.write('\n');
+      buffer.write(message.exception);
     }
 
     if (message.trace != null) {
-      stdout.write('\n');
-      stdout.write(message.trace.toString());
+      buffer.write('\n');
+      buffer.write(message.trace.toString());
     }
 
-    stdout.write('\n');
+    buffer.write('\n');
+    Zone.root.print(buffer.toString());
   }
 
   @override
