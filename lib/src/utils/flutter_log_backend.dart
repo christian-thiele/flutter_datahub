@@ -6,7 +6,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
 class FlutterLogBackend extends LogBackend {
-  int _logLevel = 0;
+  LogLevel _logLevel = LogLevel.debug;
 
   final FirebaseCrashlytics? crashlytics;
 
@@ -14,7 +14,7 @@ class FlutterLogBackend extends LogBackend {
 
   @override
   void publish(LogMessage message) {
-    if (message.severity >= LogMessage.error) {
+    if (message.level.level >= LogLevel.error.level) {
       crashlytics?.recordError(
         message.exception,
         message.trace,
@@ -23,13 +23,13 @@ class FlutterLogBackend extends LogBackend {
       );
     }
 
-    if (!kDebugMode || message.severity < _logLevel) {
+    if (!kDebugMode || message.level.level < _logLevel.level) {
       return;
     }
 
     final buffer = StringBuffer();
 
-    buffer.write(_severityPrefix(message.severity));
+    buffer.write(_severityPrefix(message.level));
     buffer.write(' ');
     buffer.write(message.message);
 
@@ -48,21 +48,21 @@ class FlutterLogBackend extends LogBackend {
   }
 
   @override
-  void setLogLevel(int level) => _logLevel = level;
+  void setLogLevel(LogLevel level) => _logLevel = level;
 
-  String _severityPrefix(int severity) {
+  String _severityPrefix(LogLevel severity) {
     switch (severity) {
-      case LogMessage.debug:
+      case LogLevel.debug:
         return '[DEBUG   ]';
-      case LogMessage.verbose:
+      case LogLevel.verbose:
         return '[VERBOSE ]';
-      case LogMessage.info:
+      case LogLevel.info:
         return '[INFO    ]';
-      case LogMessage.warning:
+      case LogLevel.warning:
         return '[WARNING ]';
-      case LogMessage.error:
+      case LogLevel.error:
         return '[ERROR   ]';
-      case LogMessage.critical:
+      case LogLevel.critical:
         return '[CRITICAL]';
       default:
         return '[UNKNOWN ]';
