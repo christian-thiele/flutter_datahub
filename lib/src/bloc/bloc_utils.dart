@@ -14,7 +14,8 @@ extension PropertyStateMapper<E> on Stream<PropertyState<E>> {
         return const LoadingState();
       });
 
-  Stream<PropertyState<T>> asyncMapProperty<T>(FutureOr<T> Function(E) mapper) =>
+  Stream<PropertyState<T>> asyncMapProperty<T>(
+          FutureOr<T> Function(E) mapper) =>
       asyncMap((event) async {
         if (event is ValueState<E>) {
           return ValueState(await mapper(event.value));

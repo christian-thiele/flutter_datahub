@@ -60,8 +60,8 @@ abstract class BaseBloc {
   SequentialCollectionController<Item> sequentialCollection<Item>(
       PullCollection<Item> collection,
       {int chunkSize = 25}) {
-    final controller =
-        SequentialCollectionController<Item>.pull(collection, chunkSize: chunkSize);
+    final controller = SequentialCollectionController<Item>.pull(collection,
+        chunkSize: chunkSize);
     _collectionControllers.add(controller);
     return controller;
   }
