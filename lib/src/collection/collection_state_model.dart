@@ -1,6 +1,6 @@
 abstract class CollectionStateModel<Item> {
   final int size;
-  final List<Item> items;
+  final Iterable<Item> items;
 
   CollectionStateModel(this.size, this.items);
 }

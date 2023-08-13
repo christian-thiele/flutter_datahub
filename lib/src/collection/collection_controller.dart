@@ -3,12 +3,14 @@ import 'package:flutter_datahub/bloc.dart';
 
 import 'collection_state_model.dart';
 
+//TODO docs
 abstract class CollectionController<Item> {
-  final Collection<Item> collection;
+  final params = <String, String>{};
+  final query = <String, List<String>>{};
 
   Stream<PropertyState<CollectionStateModel<Item>>> get stream;
 
-  CollectionController(this.collection);
+  CollectionController();
 
   /// Invalidates caches and implies that data should be
   /// re-fetched while trying to keep the current collection state

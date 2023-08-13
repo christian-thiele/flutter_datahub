@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:datahub/collection.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_datahub/collection.dart';
 import 'package:rxdart/rxdart.dart';
@@ -21,7 +22,7 @@ abstract class BaseBloc {
 
   BaseBloc();
 
-  void initialize() {}
+  void initialize(BuildContext context) {}
 
   /// Instantiates an auto-disposing [BehaviourSubject]
   ///
@@ -47,8 +48,8 @@ abstract class BaseBloc {
   ///
   /// Disposal is taken care of in the [dispose] method.
   PagedCollectionController<Item> pagedCollection<Item>(
-      Collection<Item> collection) {
-    final controller = PagedCollectionController<Item>(collection);
+      PullCollection<Item> collection) {
+    final controller = PagedCollectionController<Item>.pull(collection);
     _collectionControllers.add(controller);
     return controller;
   }
@@ -57,10 +58,10 @@ abstract class BaseBloc {
   ///
   /// Disposal is taken care of in the [dispose] method.
   SequentialCollectionController<Item> sequentialCollection<Item>(
-      Collection<Item> collection,
+      PullCollection<Item> collection,
       {int chunkSize = 25}) {
     final controller =
-        SequentialCollectionController<Item>(collection, chunkSize: chunkSize);
+        SequentialCollectionController<Item>.pull(collection, chunkSize: chunkSize);
     _collectionControllers.add(controller);
     return controller;
   }

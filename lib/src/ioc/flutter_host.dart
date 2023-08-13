@@ -1,6 +1,6 @@
+import 'dart:async';
 import 'dart:io';
 
-import 'package:boost/boost.dart';
 import 'package:datahub/datahub.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/widgets.dart';
@@ -63,9 +63,8 @@ class FlutterHost extends ServiceHost {
       sender: 'FlutterDataHub',
     );
 
-    app?.apply(runAppAsService);
+    if (app != null) {
+      runApp(ResolverProvider(resolver: this, child: app));
+    }
   }
-
-  void runAppAsService(Widget app) =>
-      runAsService(() => runApp(ResolverProvider(child: app)));
 }

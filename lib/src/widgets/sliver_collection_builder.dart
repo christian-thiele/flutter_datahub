@@ -14,6 +14,7 @@ class SliverCollectionBuilder<Item> extends StatefulWidget {
   final Axis scrollDirection;
   final ScrollBehavior? scrollBehavior;
   final bool shrinkWrap;
+  final bool reverse;
 
   final SequentialCollectionController<Item> collection;
   final List<Widget>? leading;
@@ -31,6 +32,7 @@ class SliverCollectionBuilder<Item> extends StatefulWidget {
     this.emptyBuilder,
     this.loadingBuilder,
     this.physics,
+    this.reverse = false,
     this.scrollDirection = Axis.vertical,
     this.scrollBehavior,
     this.pullToRefresh = false,
@@ -86,6 +88,10 @@ class _SliverCollectionBuilderState<Item>
         child: ConstrainedBox(
           constraints: const BoxConstraints.expand(),
           child: CustomScrollView(
+            reverse: widget.reverse,
+            physics: widget.physics,
+            scrollDirection: widget.scrollDirection,
+            scrollBehavior: widget.scrollBehavior,
             shrinkWrap: widget.shrinkWrap,
             slivers: [
               if (widget.leading != null) ...widget.leading!,
@@ -103,10 +109,11 @@ class _SliverCollectionBuilderState<Item>
   }
 
   Widget _buildScrollView(
-      BuildContext context, List<Item> items, bool loading) {
+      BuildContext context, Iterable<Item> items, bool loading) {
     return NotificationListener<ScrollNotification>(
       onNotification: _onScroll,
       child: CustomScrollView(
+        reverse: widget.reverse,
         physics: widget.physics,
         scrollDirection: widget.scrollDirection,
         scrollBehavior: widget.scrollBehavior,

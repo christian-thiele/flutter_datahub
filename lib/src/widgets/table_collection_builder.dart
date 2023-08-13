@@ -18,7 +18,8 @@ class TableCollectionBuilder<Item> extends StatefulWidget {
   final ValueSetter<bool?>? onSelectAll;
   final Decoration? decoration;
   final MaterialStateProperty<Color?>? dataRowColor;
-  final double? dataRowHeight;
+  final double? dataRowMinHeight;
+  final double? dataRowMaxHeight;
   final TextStyle? dataTextStyle;
   final MaterialStateProperty<Color?>? headingRowColor;
   final double? headingRowHeight;
@@ -43,7 +44,8 @@ class TableCollectionBuilder<Item> extends StatefulWidget {
     this.onSelectAll,
     this.decoration,
     this.dataRowColor,
-    this.dataRowHeight,
+    this.dataRowMinHeight,
+    this.dataRowMaxHeight,
     this.dataTextStyle,
     this.headingRowColor,
     this.headingRowHeight,
@@ -118,7 +120,7 @@ class _TableCollectionBuilderState<Item>
     );
   }
 
-  Widget _buildTable(BuildContext context, List<Item> items) {
+  Widget _buildTable(BuildContext context, Iterable<Item> items) {
     return DataTable(
       checkboxHorizontalMargin: widget.checkboxHorizontalMargin,
       columnSpacing: widget.columnSpacing,
@@ -129,7 +131,8 @@ class _TableCollectionBuilderState<Item>
       headingTextStyle: widget.headingTextStyle,
       onSelectAll: widget.onSelectAll,
       showCheckboxColumn: widget.showCheckboxColumn,
-      dataRowHeight: widget.dataRowHeight,
+      dataRowMinHeight: widget.dataRowMinHeight,
+      dataRowMaxHeight: widget.dataRowMaxHeight,
       headingRowHeight: widget.headingRowHeight,
       horizontalMargin: widget.horizontalMargin,
       dataRowColor: widget.dataRowColor,
@@ -155,7 +158,7 @@ class _TableCollectionBuilderState<Item>
   Future<void> _loadPage(int page, {bool refresh = false}) async {
     await _continueSemaphore.throttle(() async {
       _page = page;
-      await widget.collection.loadPage(page, _pageSize, invalidate: refresh);
+      await widget.collection.setPage(page, _pageSize, invalidate: refresh);
     });
   }
 
