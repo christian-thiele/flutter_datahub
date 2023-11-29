@@ -23,11 +23,12 @@ extension ContextResolver on BuildContext {
   }
 
   ServiceResolver getResolver() {
-    final provider = dependOnInheritedWidgetOfExactType<ResolverProvider>();
+    final provider = getInheritedWidgetOfExactType<ResolverProvider>();
+
     if (provider == null) {
       throw Exception(
           'No service resolver registered in build context. Start your app with'
-          ' FlutterHost.runApp or wrap your widget inside a ResolverProvider.');
+              ' FlutterHost.runApp or wrap your widget inside a ResolverProvider.');
     }
     return provider.resolver;
   }

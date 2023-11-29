@@ -1,3 +1,5 @@
+typedef Property<T> = Stream<PropertyState<T>>;
+
 /// Implements the most common use case for states.
 ///
 /// Value is available -> [ValueState]

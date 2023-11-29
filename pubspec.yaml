@@ -1,6 +1,6 @@
 name: flutter_datahub
 description: DataHub integration for Flutter Apps.
-version: 0.1.0-dev.13
+version: 0.1.0-dev.14
 homepage: https://datahubproject.net/
 
 environment:
@@ -13,7 +13,7 @@ dependencies:
 
   rxdart: ^0.27.5
   boost: ^1.8.9
-  datahub: ^0.17.0-dev.23
+  datahub: ^0.17.0-dev.26
   firebase_crashlytics: ^3.3.4
 
 dev_dependencies:
