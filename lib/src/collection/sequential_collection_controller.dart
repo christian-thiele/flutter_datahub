@@ -164,5 +164,8 @@ class _SequentialReactiveCollectionController<
   }
 
   @override
-  void dispose() => _sub?.cancel();
+  void dispose() {
+    _sub?.cancel();
+    _controller.close();
+  }
 }
