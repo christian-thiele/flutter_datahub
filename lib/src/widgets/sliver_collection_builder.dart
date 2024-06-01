@@ -24,7 +24,7 @@ class SliverCollectionBuilder<Item> extends StatefulWidget {
   final ErrorBuilder? errorBuilder;
 
   const SliverCollectionBuilder({
-    Key? key,
+    super.key,
     required this.collection,
     required this.itemBuilder,
     this.leading,
@@ -37,7 +37,7 @@ class SliverCollectionBuilder<Item> extends StatefulWidget {
     this.scrollBehavior,
     this.pullToRefresh = false,
     this.shrinkWrap = true,
-  }) : super(key: key);
+  });
 
   @override
   State<SliverCollectionBuilder<Item>> createState() =>

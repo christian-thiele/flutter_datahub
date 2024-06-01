@@ -7,7 +7,7 @@ typedef Property<T> = Stream<PropertyState<T>>;
 /// An error occurred -> [ErrorState]
 ///
 /// See [PropertyBuilder] for more.
-abstract class PropertyState<T> {
+sealed class PropertyState<T> {
   T? get valueOrNull => null;
 
   const PropertyState();

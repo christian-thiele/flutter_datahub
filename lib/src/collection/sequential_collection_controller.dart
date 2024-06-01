@@ -140,7 +140,10 @@ class _SequentialReactiveCollectionController<
           _controller.add(v);
           _continueSemaphore.release();
         },
-        onError: _controller.addError,
+        onError: (error, stack) {
+          _controller.addError(error, stack);
+          _continueSemaphore.release();
+        },
         onDone: _continueSemaphore.release,
       );
     } else {
@@ -157,7 +160,10 @@ class _SequentialReactiveCollectionController<
           _controller.add(v);
           _continueSemaphore.release();
         },
-        onError: (e, s) => _controller.add(ErrorState(error: e, stack: s)),
+        onError: (error, stack) {
+          _controller.add(ErrorState(error: error, stack: stack));
+          _continueSemaphore.release();
+        },
         onDone: _continueSemaphore.release,
       );
     }

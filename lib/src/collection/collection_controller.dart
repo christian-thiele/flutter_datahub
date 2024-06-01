@@ -1,4 +1,3 @@
-import 'package:datahub/collection.dart';
 import 'package:flutter_datahub/bloc.dart';
 
 import 'collection_state_model.dart';

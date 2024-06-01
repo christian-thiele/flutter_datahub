@@ -25,14 +25,12 @@ import 'package:flutter_datahub/utils.dart';
 /// Note that this replaces the usual call to `runApp(const MyApp())`.
 class FlutterHost extends ServiceHost {
   FlutterHost(
-    List<BaseService Function()> factories, {
+    super.factories, {
     FirebaseCrashlytics? crashlytics,
-    Map<String, dynamic> config = const <String, dynamic>{},
+    super.config,
   }) : super(
-          factories,
           failWithServices: false,
           logBackend: FlutterLogBackend(crashlytics: crashlytics),
-          config: config,
         );
 
   /// Runs the application.

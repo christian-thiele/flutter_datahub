@@ -28,7 +28,7 @@ extension ContextResolver on BuildContext {
     if (provider == null) {
       throw Exception(
           'No service resolver registered in build context. Start your app with'
-              ' FlutterHost.runApp or wrap your widget inside a ResolverProvider.');
+          ' FlutterHost.runApp or wrap your widget inside a ResolverProvider.');
     }
     return provider.resolver;
   }

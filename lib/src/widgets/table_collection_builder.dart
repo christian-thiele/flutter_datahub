@@ -17,11 +17,11 @@ class TableCollectionBuilder<Item> extends StatefulWidget {
   final bool sortAscending;
   final ValueSetter<bool?>? onSelectAll;
   final Decoration? decoration;
-  final MaterialStateProperty<Color?>? dataRowColor;
+  final WidgetStateProperty<Color?>? dataRowColor;
   final double? dataRowMinHeight;
   final double? dataRowMaxHeight;
   final TextStyle? dataTextStyle;
-  final MaterialStateProperty<Color?>? headingRowColor;
+  final WidgetStateProperty<Color?>? headingRowColor;
   final double? headingRowHeight;
   final TextStyle? headingTextStyle;
   final double? horizontalMargin;
@@ -31,7 +31,7 @@ class TableCollectionBuilder<Item> extends StatefulWidget {
   final double? checkboxHorizontalMargin;
 
   TableCollectionBuilder({
-    Key? key,
+    super.key,
     required this.collection,
     required this.columns,
     required this.rowBuilder,
@@ -55,8 +55,7 @@ class TableCollectionBuilder<Item> extends StatefulWidget {
     this.dividerThickness,
     this.showBottomBorder = false,
     this.checkboxHorizontalMargin,
-  })  : assert(pageSizeOptions.isNotEmpty),
-        super(key: key);
+  })  : assert(pageSizeOptions.isNotEmpty);
 
   @override
   State<TableCollectionBuilder<Item>> createState() =>

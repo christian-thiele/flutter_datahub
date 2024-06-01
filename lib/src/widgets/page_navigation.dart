@@ -13,7 +13,7 @@ class PageNavigation extends StatelessWidget {
   final Function(int rows) onRowsPerPageChanged;
 
   PageNavigation(
-      {Key? key,
+      {super.key,
       this.pageSizeOptions = const [10, 20, 50, 100],
       required this.pageSize,
       required this.totalCount,
@@ -23,8 +23,7 @@ class PageNavigation extends StatelessWidget {
       required this.onFirstPagePressed,
       required this.onLastPagePressed,
       required this.onRowsPerPageChanged})
-      : assert(pageSizeOptions.isNotEmpty),
-        super(key: key);
+      : assert(pageSizeOptions.isNotEmpty);
 
   bool get hasNextPage => currentPage < (totalCount / pageSize).ceil() - 1;
 

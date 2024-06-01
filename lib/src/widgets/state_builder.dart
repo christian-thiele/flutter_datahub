@@ -6,8 +6,7 @@ class StateBuilder<TState> extends StatelessWidget {
   final Stream<TState> stream;
   final ValueBuilder<TState?> builder;
 
-  const StateBuilder({Key? key, required this.stream, required this.builder})
-      : super(key: key);
+  const StateBuilder({super.key, required this.stream, required this.builder});
 
   @override
   Widget build(BuildContext context) {

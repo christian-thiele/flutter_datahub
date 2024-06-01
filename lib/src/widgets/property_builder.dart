@@ -12,12 +12,12 @@ class PropertyBuilder<TValue> extends StatelessWidget {
   final ErrorBuilder error;
 
   const PropertyBuilder({
-    Key? key,
+    super.key,
     required this.stream,
     required this.value,
     required this.loading,
     required this.error,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
