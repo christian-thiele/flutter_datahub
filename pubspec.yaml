@@ -5,7 +5,7 @@ homepage: https://datahubproject.net/
 
 environment:
   sdk: ^3.1.0
-  flutter: ^3.1.0
+  flutter: ">=3.1.0"
 
 dependencies:
   flutter:
