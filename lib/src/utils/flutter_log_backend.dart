@@ -1,28 +1,15 @@
 import 'dart:async';
 
-import 'package:boost/boost.dart';
 import 'package:datahub/datahub.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
 class FlutterLogBackend extends LogBackend {
   LogLevel _logLevel = LogLevel.debug;
 
-  final FirebaseCrashlytics? crashlytics;
-
-  FlutterLogBackend({this.crashlytics});
+  FlutterLogBackend();
 
   @override
   void publish(LogMessage message) {
-    if (message.level.level >= LogLevel.error.level) {
-      crashlytics?.recordError(
-        message.exception,
-        message.trace,
-        printDetails: false,
-        reason: nullOrWhitespace(message.message) ? null : message.message,
-      );
-    }
-
     if (!kDebugMode || message.level.level < _logLevel.level) {
       return;
     }

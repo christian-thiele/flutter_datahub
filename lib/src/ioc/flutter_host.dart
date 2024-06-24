@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:datahub/datahub.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_datahub/src/ioc/resolver_provider.dart';
 import 'package:flutter_datahub/utils.dart';
+
+import 'resolver_provider.dart';
 
 /// Hosts services and provides dependency injection.
 ///
@@ -26,11 +26,10 @@ import 'package:flutter_datahub/utils.dart';
 class FlutterHost extends ServiceHost {
   FlutterHost(
     super.factories, {
-    FirebaseCrashlytics? crashlytics,
     super.config,
   }) : super(
           failWithServices: false,
-          logBackend: FlutterLogBackend(crashlytics: crashlytics),
+          logBackend: FlutterLogBackend(),
         );
 
   /// Runs the application.
